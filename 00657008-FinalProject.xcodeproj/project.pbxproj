@@ -13,6 +13,10 @@
 		495B70EF23A5FB260068C644 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495B70EE23A5FB260068C644 /* Assets.xcassets */; };
 		495B70F223A5FB260068C644 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495B70F123A5FB260068C644 /* Preview Assets.xcassets */; };
 		495B70F523A5FB260068C644 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495B70F323A5FB260068C644 /* LaunchScreen.storyboard */; };
+		495B70FD23A5FC120068C644 /* CoffeeShopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70FC23A5FC120068C644 /* CoffeeShopData.swift */; };
+		495B70FF23A5FE710068C644 /* ShopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70FE23A5FE710068C644 /* ShopList.swift */; };
+		495B710123A601CF0068C644 /* ShopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B710023A601CF0068C644 /* ShopRow.swift */; };
+		495B710323A61C510068C644 /* ChooseDistrict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B710223A61C510068C644 /* ChooseDistrict.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		495B70F123A5FB260068C644 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		495B70F423A5FB260068C644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		495B70F623A5FB260068C644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495B70FC23A5FC120068C644 /* CoffeeShopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopData.swift; sourceTree = "<group>"; };
+		495B70FE23A5FE710068C644 /* ShopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopList.swift; sourceTree = "<group>"; };
+		495B710023A601CF0068C644 /* ShopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRow.swift; sourceTree = "<group>"; };
+		495B710223A61C510068C644 /* ChooseDistrict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDistrict.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				495B70F323A5FB260068C644 /* LaunchScreen.storyboard */,
 				495B70F623A5FB260068C644 /* Info.plist */,
 				495B70F023A5FB260068C644 /* Preview Content */,
+				495B70FC23A5FC120068C644 /* CoffeeShopData.swift */,
+				495B70FE23A5FE710068C644 /* ShopList.swift */,
+				495B710023A601CF0068C644 /* ShopRow.swift */,
+				495B710223A61C510068C644 /* ChooseDistrict.swift */,
 			);
 			path = "00657008-FinalProject";
 			sourceTree = "<group>";
@@ -147,8 +159,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				495B70E923A5FB250068C644 /* AppDelegate.swift in Sources */,
+				495B70FF23A5FE710068C644 /* ShopList.swift in Sources */,
+				495B710123A601CF0068C644 /* ShopRow.swift in Sources */,
 				495B70EB23A5FB250068C644 /* SceneDelegate.swift in Sources */,
 				495B70ED23A5FB250068C644 /* ContentView.swift in Sources */,
+				495B70FD23A5FC120068C644 /* CoffeeShopData.swift in Sources */,
+				495B710323A61C510068C644 /* ChooseDistrict.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
