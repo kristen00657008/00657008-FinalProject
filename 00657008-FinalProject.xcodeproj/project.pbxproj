@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		495B70FF23A5FE710068C644 /* ShopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70FE23A5FE710068C644 /* ShopList.swift */; };
 		495B710123A601CF0068C644 /* ShopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B710023A601CF0068C644 /* ShopRow.swift */; };
 		495B710323A61C510068C644 /* ChooseDistrict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B710223A61C510068C644 /* ChooseDistrict.swift */; };
+		49E4B0A023A8F8310056831C /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 49E4B09F23A8F8310056831C /* PartialSheet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49E4B0A023A8F8310056831C /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +105,9 @@
 			dependencies = (
 			);
 			name = "00657008-FinalProject";
+			packageProductDependencies = (
+				49E4B09F23A8F8310056831C /* PartialSheet */,
+			);
 			productName = "00657008-FinalProject";
 			productReference = 495B70E523A5FB250068C644 /* 00657008-FinalProject.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +136,9 @@
 				Base,
 			);
 			mainGroup = 495B70DC23A5FB250068C644;
+			packageReferences = (
+				49E4B09E23A8F8310056831C /* XCRemoteSwiftPackageReference "PartialSheet" */,
+			);
 			productRefGroup = 495B70E623A5FB250068C644 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -356,6 +364,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		49E4B09E23A8F8310056831C /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		49E4B09F23A8F8310056831C /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49E4B09E23A8F8310056831C /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 495B70DD23A5FB250068C644 /* Project object */;
 }
