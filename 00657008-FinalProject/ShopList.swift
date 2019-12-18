@@ -7,13 +7,18 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct ShopList: View {
     
     @State private var shops = [Shop]()
     @State private var selectedIndex = 0
+    @State private var currentWifi = ""
     @State private var currentDistrict = ""
+    @State private var currentPrice = ""
     @State private var showChooseDistrict = false
+    @State private var showChooseWifi = false
+    @State private var showChoosePrice = false
     var districts = ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
     
     func fetchShops() {
@@ -47,40 +52,74 @@ struct ShopList: View {
     var body: some View {
         
         NavigationView{
-            List(shops.indices, id: \.self) { (index)  in
-                ShopRow(shop: self.shops[index])
-            }
-            .onAppear {
-                self.fetchShops()
-            }
-            //.navigationBarTitle("台北市咖啡廳一覽表")
-            .navigationBarItems(leading:
-                HStack{
-                    VStack{
-                        Text("選擇區域")
-                            .bold()
-                            .foregroundColor(Color.blue)
-                            .contextMenu {
+            VStack {
+                Button(action: {
+                    self.showChooseDistrict = true
+                }) {Text("選擇區域").bold()}
+                .offset(x: -0, y: -250)
+                .partialSheet(presented: $showChooseDistrict) {
+                    VStack {
+                        Group {
+                           Button(action: {
+                               self.showChooseDistrict = false
+                           }, label: {
+                               Text("完成")
+                           }).offset(x: 150, y: -10)
+                            
+                            Text("Choose")
+                            Picker(selection: self.$selectedIndex, label: Text("")) {
                                 ForEach(0..<self.districts.count) { (index) in
                                     Button(action: {
                                         self.currentDistrict = String(self.districts[index])
                                     }) {Text(self.districts[index]) }
                                 }
-                            
+                            }
                         }
-                        Text(currentDistrict)
+                        .frame(height: 50)
+                        
+                    }
+                    .offset(x:-20 , y:0)
+                }
+                 List(shops.indices, id: \.self) { (index)  in
+                     ShopRow(shop: self.shops[index])
+                 }
+                 .onAppear {
+                     self.fetchShops()
+                 }
+                Spacer()
+            }
+            //.navigationBarTitle("台北市咖啡廳一覽表")
+            .navigationBarItems(leading:
+                HStack{
+                    VStack{
+                        Text("價格考量")
+                            .bold()
+                            .foregroundColor(Color.blue)
+                            .contextMenu {
+                                Button(action: {
+                                    self.currentPrice = "昂貴"
+                                }) {Text("昂貴")}
+                                Button(action: {
+                                    self.currentPrice = "中等"
+                                }) {Text("中等")}
+                                Button(action: {
+                                    self.currentPrice = "便宜"
+                                }) {Text("便宜")}
+                                Button(action: {
+                                    self.currentPrice = "不重要"
+                                }) {Text("不重要")}
+                        }
+                        Text(currentPrice)
                     }
                     .offset(x: 0, y: 8)
+                    
                 },trailing:
                 HStack{
                     Button(action: {
-                        self.showChooseDistrict = true
-                    }) {Image("Wifi")
-                            .renderingMode(.original)
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                        }
-                        .actionSheet(isPresented: $showChooseDistrict, content: {sheet})
+                        self.showChooseWifi = true
+                    }) {Text("WIFI").bold()}
+                        .actionSheet(isPresented: $showChooseWifi, content: {sheet})
+                    Text(currentWifi)
                 }
             )
         }
