@@ -53,42 +53,16 @@ struct ShopList: View {
         
         NavigationView{
             VStack {
-                Button(action: {
-                    self.showChooseDistrict = true
-                }) {Text("選擇區域").bold()}
-                .offset(x: -0, y: -250)
-                .partialSheet(presented: $showChooseDistrict) {
-                    VStack {
-                        Group {
-                           Button(action: {
-                               self.showChooseDistrict = false
-                           }, label: {
-                               Text("完成")
-                           }).offset(x: 150, y: -10)
-                            
-                            Text("Choose")
-                            Picker(selection: self.$selectedIndex, label: Text("")) {
-                                ForEach(0..<self.districts.count) { (index) in
-                                    Button(action: {
-                                        self.currentDistrict = String(self.districts[index])
-                                    }) {Text(self.districts[index]) }
-                                }
-                            }
-                        }
-                        .frame(height: 50)
-                        
-                    }
-                    .offset(x:-20 , y:0)
-                }
                  List(shops.indices, id: \.self) { (index)  in
+                    
                      ShopRow(shop: self.shops[index])
                  }
+                 .frame(height:700)
                  .onAppear {
                      self.fetchShops()
                  }
                 Spacer()
             }
-            //.navigationBarTitle("台北市咖啡廳一覽表")
             .navigationBarItems(leading:
                 HStack{
                     VStack{
@@ -112,7 +86,10 @@ struct ShopList: View {
                         Text(currentPrice)
                     }
                     .offset(x: 0, y: 8)
-                    
+                    Button(action: {
+                        self.showChooseDistrict = true
+                    }) {Text("選擇區域").bold()}
+                    .offset(x: 70, y: 2)
                 },trailing:
                 HStack{
                     Button(action: {
@@ -122,6 +99,29 @@ struct ShopList: View {
                     Text(currentWifi)
                 }
             )
+        }
+        .partialSheet(presented: $showChooseDistrict) {
+            VStack {
+                Group {
+                   Button(action: {
+                       self.showChooseDistrict = false
+                   }, label: {
+                       Text("完成")
+                   }).offset(x: 150, y: -10)
+                    
+                    Text("請選擇區域")
+                        .offset(x:0,y:-20)
+                    Picker(selection: self.$selectedIndex, label: Text("")) {
+                        ForEach(0..<self.districts.count) { (index) in
+                            Button(action: {
+                                self.currentDistrict = String(self.districts[index])
+                            }) {Text(self.districts[index]) }
+                        }
+                    }
+                    .offset(x:-50,y:0)
+                }
+                .frame(height: 40)
+            }
         }
     }
 }
