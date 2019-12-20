@@ -12,14 +12,15 @@ import PartialSheet
 struct ShopList: View {
     
     @State private var shops = [Shop]()
-    @State private var selectedIndex = 0
+    @State private var newShops = [Shop]()
     @State private var currentWifi = ""
-    @State private var currentDistrict = ""
+    @State private var currentDistrict = "所有地區"
+    @State private var tempDistrict = ""
     @State private var currentPrice = ""
     @State private var showChooseDistrict = false
     @State private var showChooseWifi = false
     @State private var showChoosePrice = false
-    var districts = ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
+    var districts = ["所有地區","中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
     
     func fetchShops() {
         let urlStr = "https://cafenomad.tw/api/v1.2/cafes/taipei"
@@ -30,7 +31,25 @@ struct ShopList: View {
                     self.shops = shop
                 }
             }.resume()
-            
+        }
+    }
+    
+    func ifDistrict(_index: Int) -> Bool {
+        if(self.currentDistrict == "所有地區"){
+            return true
+        }
+        else {
+            let address = shops[_index].address
+            var temp: [String]
+            var zone: String
+            temp = address.components(separatedBy: "區")
+            zone = String(temp[0].suffix(2)) + "區"
+            if (zone == self.currentDistrict){
+                return true
+            }
+            else{
+                return false
+            }
         }
     }
     
@@ -53,9 +72,11 @@ struct ShopList: View {
         
         NavigationView{
             VStack {
+                 
                  List(shops.indices, id: \.self) { (index)  in
-                    
-                     ShopRow(shop: self.shops[index])
+                    if(self.ifDistrict(_index: index)){
+                        ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)
+                    }
                  }
                  .frame(height:700)
                  .onAppear {
@@ -86,10 +107,13 @@ struct ShopList: View {
                         Text(currentPrice)
                     }
                     .offset(x: 0, y: 8)
-                    Button(action: {
-                        self.showChooseDistrict = true
-                    }) {Text("選擇區域").bold()}
+                    VStack{
+                        Button(action: {
+                            self.showChooseDistrict = true
+                        }){Text(currentDistrict).bold()}
+                    }
                     .offset(x: 70, y: 2)
+                    
                 },trailing:
                 HStack{
                     Button(action: {
@@ -104,18 +128,17 @@ struct ShopList: View {
             VStack {
                 Group {
                    Button(action: {
-                       self.showChooseDistrict = false
+                        self.showChooseDistrict = false
+                        self.currentDistrict = self.tempDistrict
                    }, label: {
                        Text("完成")
                    }).offset(x: 150, y: -10)
                     
                     Text("請選擇區域")
                         .offset(x:0,y:-20)
-                    Picker(selection: self.$selectedIndex, label: Text("")) {
-                        ForEach(0..<self.districts.count) { (index) in
-                            Button(action: {
-                                self.currentDistrict = String(self.districts[index])
-                            }) {Text(self.districts[index]) }
+                    Picker(selection: self.$tempDistrict, label: Text("")) {
+                        ForEach(0..<self.districts.count) { (index) in                            
+                            Text(self.districts[index]).tag(self.districts[index])
                         }
                     }
                     .offset(x:-50,y:0)
