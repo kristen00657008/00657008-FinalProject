@@ -11,6 +11,7 @@ import PartialSheet
 
 struct ShopList: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var shops = [Shop]()
     @State private var newShops = [Shop]()
     @State private var currentWifi = ""
@@ -21,9 +22,9 @@ struct ShopList: View {
     @State private var showChooseWifi = false
     @State private var showChoosePrice = false
     var districts = ["所有地區","中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
+    var urlStr: String
     
     func fetchShops() {
-        let urlStr = "https://cafenomad.tw/api/v1.2/cafes/taipei"
         if let url = URL(string: urlStr) {
             URLSession.shared.dataTask(with: url) { (data, response , error) in
                 let decoder = JSONDecoder()
@@ -76,7 +77,13 @@ struct ShopList: View {
                  List(shops.indices, id: \.self) { (index)  in
                     if(self.ifDistrict(_index: index)){
                         ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)
+                            .frame(height:35)
                     }
+                    else {
+                        ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)
+                            .frame(height:0)
+                    }
+                    
                  }
                  .frame(height:700)
                  .onAppear {
@@ -89,6 +96,7 @@ struct ShopList: View {
                     VStack{
                         Text("價格考量")
                             .bold()
+                            .font(Font.system(size: 20))
                             .foregroundColor(Color.blue)
                             .contextMenu {
                                 Button(action: {
@@ -106,30 +114,47 @@ struct ShopList: View {
                         }
                         Text(currentPrice)
                     }
-                    .offset(x: 0, y: 8)
+                    .offset(x: 20, y: 18)
                     VStack{
                         Button(action: {
                             self.showChooseDistrict = true
-                        }){Text(currentDistrict).bold()}
+                        }){Text(currentDistrict).bold().font(Font.system(size: 20))}
+                            .offset(x:20,y:11)
                     }
-                    .offset(x: 70, y: 2)
+                    .offset(x: 40, y: 0)
                     
                 },trailing:
-                HStack{
+                VStack{
+                    Button(action: {
+                       self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .frame(width:22,height:22)
+                    }
+                    .offset(x: 28,y:15)
+                    
                     Button(action: {
                         self.showChooseWifi = true
-                    }) {Text("WIFI").bold()}
+                    }) {Text("WIFI").bold().font(Font.system(size: 25))}
+                        .offset(x: -40,y:0)
                         .actionSheet(isPresented: $showChooseWifi, content: {sheet})
                     Text(currentWifi)
+                    
                 }
+                .offset(x: 0,y: 3)
             )
         }
-        .partialSheet(presented: $showChooseDistrict) {
+        
+        /*.partialSheet(presented: $showChooseDistrict) {
             VStack {
                 Group {
                    Button(action: {
                         self.showChooseDistrict = false
                         self.currentDistrict = self.tempDistrict
+                   /* ForEach(shops.self) { (index) in
+                        
+                    }*/
                    }, label: {
                        Text("完成")
                    }).offset(x: 150, y: -10)
@@ -145,12 +170,12 @@ struct ShopList: View {
                 }
                 .frame(height: 40)
             }
-        }
+        }*/
     }
 }
 
 struct ShopList_Previews: PreviewProvider {
     static var previews: some View {
-        ShopList()
+        ShopList(urlStr: "https://cafenomad.tw/api/v1.2/cafes/taipei")
     }
 }

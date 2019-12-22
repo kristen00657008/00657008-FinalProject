@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3792B14323AF3CBE0088EE3B /* ChooseCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792B14223AF3CBE0088EE3B /* ChooseCity.swift */; };
+		3792B14523AF43020088EE3B /* CityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792B14423AF43020088EE3B /* CityRow.swift */; };
 		495B70E923A5FB250068C644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70E823A5FB250068C644 /* AppDelegate.swift */; };
 		495B70EB23A5FB250068C644 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70EA23A5FB250068C644 /* SceneDelegate.swift */; };
 		495B70ED23A5FB250068C644 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70EC23A5FB250068C644 /* ContentView.swift */; };
@@ -16,11 +18,12 @@
 		495B70FD23A5FC120068C644 /* CoffeeShopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70FC23A5FC120068C644 /* CoffeeShopData.swift */; };
 		495B70FF23A5FE710068C644 /* ShopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70FE23A5FE710068C644 /* ShopList.swift */; };
 		495B710123A601CF0068C644 /* ShopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B710023A601CF0068C644 /* ShopRow.swift */; };
-		495B710323A61C510068C644 /* ChooseDistrict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B710223A61C510068C644 /* ChooseDistrict.swift */; };
 		49E4B0A023A8F8310056831C /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 49E4B09F23A8F8310056831C /* PartialSheet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3792B14223AF3CBE0088EE3B /* ChooseCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCity.swift; sourceTree = "<group>"; };
+		3792B14423AF43020088EE3B /* CityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRow.swift; sourceTree = "<group>"; };
 		495B70E523A5FB250068C644 /* 00657008-FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "00657008-FinalProject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		495B70E823A5FB250068C644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		495B70EA23A5FB250068C644 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,7 +35,6 @@
 		495B70FC23A5FC120068C644 /* CoffeeShopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopData.swift; sourceTree = "<group>"; };
 		495B70FE23A5FE710068C644 /* ShopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopList.swift; sourceTree = "<group>"; };
 		495B710023A601CF0068C644 /* ShopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRow.swift; sourceTree = "<group>"; };
-		495B710223A61C510068C644 /* ChooseDistrict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDistrict.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +78,8 @@
 				495B70FC23A5FC120068C644 /* CoffeeShopData.swift */,
 				495B70FE23A5FE710068C644 /* ShopList.swift */,
 				495B710023A601CF0068C644 /* ShopRow.swift */,
-				495B710223A61C510068C644 /* ChooseDistrict.swift */,
+				3792B14223AF3CBE0088EE3B /* ChooseCity.swift */,
+				3792B14423AF43020088EE3B /* CityRow.swift */,
 			);
 			path = "00657008-FinalProject";
 			sourceTree = "<group>";
@@ -168,11 +171,12 @@
 			files = (
 				495B70E923A5FB250068C644 /* AppDelegate.swift in Sources */,
 				495B70FF23A5FE710068C644 /* ShopList.swift in Sources */,
+				3792B14523AF43020088EE3B /* CityRow.swift in Sources */,
 				495B710123A601CF0068C644 /* ShopRow.swift in Sources */,
 				495B70EB23A5FB250068C644 /* SceneDelegate.swift in Sources */,
 				495B70ED23A5FB250068C644 /* ContentView.swift in Sources */,
+				3792B14323AF3CBE0088EE3B /* ChooseCity.swift in Sources */,
 				495B70FD23A5FC120068C644 /* CoffeeShopData.swift in Sources */,
-				495B710323A61C510068C644 /* ChooseDistrict.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

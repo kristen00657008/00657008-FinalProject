@@ -35,11 +35,9 @@ struct ShopRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            //if(ifDistrict()){
-                Text(shop.name)
-                    .bold()
-                Text(shop.address)
-            //}
+            Text(shop.name)
+                .bold()
+            Text(shop.address)
         }
     }
 }
