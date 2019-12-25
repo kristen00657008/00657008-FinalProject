@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		335F1B4923B31B3B002F11F3 /* DistrictData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F1B4823B31B3B002F11F3 /* DistrictData.swift */; };
 		3792B14323AF3CBE0088EE3B /* ChooseCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792B14223AF3CBE0088EE3B /* ChooseCity.swift */; };
 		3792B14523AF43020088EE3B /* CityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792B14423AF43020088EE3B /* CityRow.swift */; };
 		495B70E923A5FB250068C644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70E823A5FB250068C644 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		335F1B4823B31B3B002F11F3 /* DistrictData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictData.swift; sourceTree = "<group>"; };
 		3792B14223AF3CBE0088EE3B /* ChooseCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCity.swift; sourceTree = "<group>"; };
 		3792B14423AF43020088EE3B /* CityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRow.swift; sourceTree = "<group>"; };
 		495B70E523A5FB250068C644 /* 00657008-FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "00657008-FinalProject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 				495B710023A601CF0068C644 /* ShopRow.swift */,
 				3792B14223AF3CBE0088EE3B /* ChooseCity.swift */,
 				3792B14423AF43020088EE3B /* CityRow.swift */,
+				335F1B4823B31B3B002F11F3 /* DistrictData.swift */,
 			);
 			path = "00657008-FinalProject";
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				495B70EB23A5FB250068C644 /* SceneDelegate.swift in Sources */,
 				495B70ED23A5FB250068C644 /* ContentView.swift in Sources */,
 				3792B14323AF3CBE0088EE3B /* ChooseCity.swift in Sources */,
+				335F1B4923B31B3B002F11F3 /* DistrictData.swift in Sources */,
 				495B70FD23A5FC120068C644 /* CoffeeShopData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

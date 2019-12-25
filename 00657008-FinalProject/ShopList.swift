@@ -21,9 +21,9 @@ struct ShopList: View {
     @State private var showChooseDistrict = false
     @State private var showChooseWifi = false
     @State private var showChoosePrice = false
-    var districts = ["所有地區","中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
-    var urlStr: String
-    
+    var urlStr: String  
+    var districts: [String]
+        
     func fetchShops() {
         if let url = URL(string: urlStr) {
             URLSession.shared.dataTask(with: url) { (data, response , error) in
@@ -145,8 +145,7 @@ struct ShopList: View {
                 .offset(x: 0,y: 3)
             )
         }
-        
-        /*.partialSheet(presented: $showChooseDistrict) {
+        .partialSheet(presented: $showChooseDistrict) {
             VStack {
                 Group {
                    Button(action: {
@@ -162,7 +161,7 @@ struct ShopList: View {
                     Text("請選擇區域")
                         .offset(x:0,y:-20)
                     Picker(selection: self.$tempDistrict, label: Text("")) {
-                        ForEach(0..<self.districts.count) { (index) in                            
+                        ForEach(0..<self.districts.count) { (index) in
                             Text(self.districts[index]).tag(self.districts[index])
                         }
                     }
@@ -170,12 +169,12 @@ struct ShopList: View {
                 }
                 .frame(height: 40)
             }
-        }*/
+        }
     }
 }
 
 struct ShopList_Previews: PreviewProvider {
     static var previews: some View {
-        ShopList(urlStr: "https://cafenomad.tw/api/v1.2/cafes/taipei")
+        ShopList(urlStr: "",districts: [""])
     }
 }
