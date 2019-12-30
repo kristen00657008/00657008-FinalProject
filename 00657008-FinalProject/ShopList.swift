@@ -76,8 +76,10 @@ struct ShopList: View {
                  
                  List(shops.indices, id: \.self) { (index)  in
                     if(self.ifDistrict(_index: index)){
-                        ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)
-                            .frame(height:35)
+                        NavigationLink(destination: ShopDetail(shop: self.shops[index])) {
+                            ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)
+                                .frame(height:35)
+                        }                        
                     }
                     else {
                         ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)

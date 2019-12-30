@@ -12,18 +12,22 @@ struct Shop: Codable,Identifiable{
     var id: UUID
     var name: String
     var address: String
-    /*var wifi: Int
-    var seat: Int
-    var quiet: Int
-    var tasty: Int
-    var cheap: Int
-    var latitude: Double
-    var longitude: Double
-    var url: URL?
-    var limited_time: String?
+    var wifi: Double
+    var seat: Double
+    var quiet: Double
+    var tasty: Double
+    var cheap: Double
+    var latitude: String
+    var longitude: String
+    var open_time: String?
     var socket: String?
     var standing_desk: String?
-    var open_time: String?*/
+    var limited_time: String?
+    //var url: URL?
+    
+    
+    
+    
 }
 
 struct ShopResults: Codable {

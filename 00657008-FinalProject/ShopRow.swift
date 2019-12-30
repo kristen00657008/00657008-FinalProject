@@ -46,19 +46,19 @@ struct ShopRow_Previews: PreviewProvider {
     static var previews: some View {
         ShopRow(shop: Shop( id: UUID(),
                             name: "123",
-                            address: "456"
-                            /*wifi: 0,
+                            address: "456",
+                            wifi: 0,
                             seat: 0,
                             quiet: 0,
                             tasty: 0,
                             cheap: 0,
-                            latitude: 0,
-                            longitude: 0,
-                            url: URL(string: "https://cafenomad.tw/api/v1.2/cafes/taipei"),
-                            limited_time: "",
+                            latitude: "0",
+                            longitude: "0",
+                            //url: URL(string: "https://cafenomad.tw/api/v1.2/cafes/taipei"),
+                            open_time: "",
                             socket: "",
                             standing_desk: "",
-                            open_time: ""*/ )
+                            limited_time: "" )
             ,currentDistrict: "123"
         )
     }

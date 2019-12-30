@@ -19,6 +19,8 @@
 		495B70FD23A5FC120068C644 /* CoffeeShopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70FC23A5FC120068C644 /* CoffeeShopData.swift */; };
 		495B70FF23A5FE710068C644 /* ShopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B70FE23A5FE710068C644 /* ShopList.swift */; };
 		495B710123A601CF0068C644 /* ShopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B710023A601CF0068C644 /* ShopRow.swift */; };
+		49DDA1C223B9F71300A98C79 /* ShopDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA1C123B9F71300A98C79 /* ShopDetail.swift */; };
+		49DDA1C623B9FCD100A98C79 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA1C523B9FCD100A98C79 /* MapView.swift */; };
 		49E4B0A023A8F8310056831C /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 49E4B09F23A8F8310056831C /* PartialSheet */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		495B70FC23A5FC120068C644 /* CoffeeShopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopData.swift; sourceTree = "<group>"; };
 		495B70FE23A5FE710068C644 /* ShopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopList.swift; sourceTree = "<group>"; };
 		495B710023A601CF0068C644 /* ShopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRow.swift; sourceTree = "<group>"; };
+		49DDA1C123B9F71300A98C79 /* ShopDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetail.swift; sourceTree = "<group>"; };
+		49DDA1C523B9FCD100A98C79 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +84,11 @@
 				495B70FC23A5FC120068C644 /* CoffeeShopData.swift */,
 				495B70FE23A5FE710068C644 /* ShopList.swift */,
 				495B710023A601CF0068C644 /* ShopRow.swift */,
+				49DDA1C123B9F71300A98C79 /* ShopDetail.swift */,
 				3792B14223AF3CBE0088EE3B /* ChooseCity.swift */,
 				3792B14423AF43020088EE3B /* CityRow.swift */,
 				335F1B4823B31B3B002F11F3 /* DistrictData.swift */,
+				49DDA1C523B9FCD100A98C79 /* MapView.swift */,
 			);
 			path = "00657008-FinalProject";
 			sourceTree = "<group>";
@@ -175,7 +181,9 @@
 				495B70E923A5FB250068C644 /* AppDelegate.swift in Sources */,
 				495B70FF23A5FE710068C644 /* ShopList.swift in Sources */,
 				3792B14523AF43020088EE3B /* CityRow.swift in Sources */,
+				49DDA1C623B9FCD100A98C79 /* MapView.swift in Sources */,
 				495B710123A601CF0068C644 /* ShopRow.swift in Sources */,
+				49DDA1C223B9F71300A98C79 /* ShopDetail.swift in Sources */,
 				495B70EB23A5FB250068C644 /* SceneDelegate.swift in Sources */,
 				495B70ED23A5FB250068C644 /* ContentView.swift in Sources */,
 				3792B14323AF3CBE0088EE3B /* ChooseCity.swift in Sources */,
