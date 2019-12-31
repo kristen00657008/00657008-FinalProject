@@ -10,35 +10,17 @@ import SwiftUI
 
 struct ShopRow: View {
     var shop: Shop
-    var currentDistrict : String
-    /*func ifDistrict() -> Bool {
-        /*temp = address.components(separatedBy: "市")
-        city = String(temp[0].suffix(2)) + "市"*/
-        
-        if(self.currentDistrict == "選擇區域"){
-            return true
-        }
-        else {
-            let address = self.shop.address
-            var temp: [String]
-            var zone: String
-            temp = address.components(separatedBy: "區")
-            zone = String(temp[0].suffix(2)) + "區"
-            if (zone == self.currentDistrict){
-                return true
-            }
-            else{
-                return false
-            }
-        }
-    }*/
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             Text(shop.name)
                 .bold()
             Text(shop.address)
         }
+        .frame(width: 330)
+        .background(Color.yellow)
+        .cornerRadius(10)
+        .shadow(radius: 5)
     }
 }
 
@@ -59,7 +41,6 @@ struct ShopRow_Previews: PreviewProvider {
                             socket: "",
                             standing_desk: "",
                             limited_time: "" )
-            ,currentDistrict: "123"
         )
     }
 }

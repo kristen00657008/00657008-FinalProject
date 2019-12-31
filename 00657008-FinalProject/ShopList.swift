@@ -13,7 +13,8 @@ struct ShopList: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var shops = [Shop]()
-    @State private var newShops = [Shop]()
+    @State private var currentShops = [Shop]()
+    @State private var tempShops = [Shop]()
     @State private var currentWifi = ""
     @State private var currentDistrict = "所有地區"
     @State private var tempDistrict = ""
@@ -23,34 +24,37 @@ struct ShopList: View {
     @State private var showChoosePrice = false
     var urlStr: String  
     var districts: [String]
-        
+   
     func fetchShops() {
         if let url = URL(string: urlStr) {
             URLSession.shared.dataTask(with: url) { (data, response , error) in
                 let decoder = JSONDecoder()
                 if let data = data, let shop = try? decoder.decode([Shop].self, from: data) {
                     self.shops = shop
+                    self.currentShops = self.shops
                 }
             }.resume()
         }
     }
-    
-    func ifDistrict(_index: Int) -> Bool {
+    func judgeDistrict() {
         if(self.currentDistrict == "所有地區"){
-            return true
+            self.currentShops = self.shops
         }
         else {
-            let address = shops[_index].address
-            var temp: [String]
-            var zone: String
-            temp = address.components(separatedBy: "區")
-            zone = String(temp[0].suffix(2)) + "區"
-            if (zone == self.currentDistrict){
-                return true
+            self.tempShops.removeAll()
+            
+            print(self.currentDistrict)
+            for shop in self.shops {
+                let address = shop.address
+                var temp: [String]
+                var zone: String
+                temp = address.components(separatedBy: "區")
+                zone = String(temp[0].suffix(2)) + "區"
+                if (zone == self.currentDistrict){
+                    self.tempShops.append(shop)
+                }
             }
-            else{
-                return false
-            }
+            self.currentShops = self.tempShops
         }
     }
     
@@ -73,58 +77,24 @@ struct ShopList: View {
         
         NavigationView{
             VStack {
-                 
-                 List(shops.indices, id: \.self) { (index)  in
-                    if(self.ifDistrict(_index: index)){
-                        NavigationLink(destination: ShopDetail(shop: self.shops[index])) {
-                            ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)
-                                .frame(height:35)
-                        }                        
+                List(self.currentShops.indices, id: \.self) { (index)  in
+                    NavigationLink(destination: ShopDetail(shop: self.currentShops[index])) {
+                        ShopRow(shop: self.currentShops[index])
+                            .frame(height:35)
                     }
-                    else {
-                        ShopRow(shop: self.shops[index],currentDistrict: self.currentDistrict)
-                            .frame(height:0)
-                    }
-                    
                  }
                  .frame(height:700)
                  .onAppear {
                      self.fetchShops()
+                     UITableView.appearance().separatorColor = .clear
                  }
                 Spacer()
             }
             .navigationBarItems(leading:
                 HStack{
-                    VStack{
-                        Text("價格考量")
-                            .bold()
-                            .font(Font.system(size: 20))
-                            .foregroundColor(Color.blue)
-                            .contextMenu {
-                                Button(action: {
-                                    self.currentPrice = "昂貴"
-                                }) {Text("昂貴")}
-                                Button(action: {
-                                    self.currentPrice = "中等"
-                                }) {Text("中等")}
-                                Button(action: {
-                                    self.currentPrice = "便宜"
-                                }) {Text("便宜")}
-                                Button(action: {
-                                    self.currentPrice = "不重要"
-                                }) {Text("不重要")}
-                        }
-                        Text(currentPrice)
-                    }
-                    .offset(x: 20, y: 18)
-                    VStack{
-                        Button(action: {
-                            self.showChooseDistrict = true
-                        }){Text(currentDistrict).bold().font(Font.system(size: 20))}
-                            .offset(x:20,y:11)
-                    }
-                    .offset(x: 40, y: 0)
-                    
+                    Button(action: {
+                        self.showChooseDistrict = true
+                    }){Text(currentDistrict).bold().font(Font.system(size: 20))}
                 },trailing:
                 VStack{
                     Button(action: {
@@ -134,17 +104,7 @@ struct ShopList: View {
                             .resizable()
                             .frame(width:22,height:22)
                     }
-                    .offset(x: 28,y:15)
-                    
-                    Button(action: {
-                        self.showChooseWifi = true
-                    }) {Text("WIFI").bold().font(Font.system(size: 25))}
-                        .offset(x: -40,y:0)
-                        .actionSheet(isPresented: $showChooseWifi, content: {sheet})
-                    Text(currentWifi)
-                    
                 }
-                .offset(x: 0,y: 3)
             )
         }
         .partialSheet(presented: $showChooseDistrict) {
@@ -153,9 +113,7 @@ struct ShopList: View {
                    Button(action: {
                         self.showChooseDistrict = false
                         self.currentDistrict = self.tempDistrict
-                   /* ForEach(shops.self) { (index) in
-                        
-                    }*/
+                        self.judgeDistrict()
                    }, label: {
                        Text("完成")
                    }).offset(x: 150, y: -10)
@@ -169,7 +127,7 @@ struct ShopList: View {
                     }
                     .offset(x:-50,y:0)
                 }
-                .frame(height: 40)
+                .frame(height: 60)
             }
         }
     }

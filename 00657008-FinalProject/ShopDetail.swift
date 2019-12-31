@@ -20,10 +20,6 @@ struct HeightButton: View {
                 Button("縮小地圖") {
                     self.mapHeight = 200
                     self.smallMap = true
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = CLLocationCoordinate2D(latitude: (self.shop.latitude as NSString).doubleValue , longitude: (self.shop.longitude as NSString).doubleValue)
-                    annotation.title = "\(self.shop.name)"
-                    self.annotations.append(annotation)
                 }
             }
             else {
