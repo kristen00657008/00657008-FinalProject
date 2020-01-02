@@ -34,7 +34,6 @@
 		3792B14223AF3CBE0088EE3B /* ChooseCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCity.swift; sourceTree = "<group>"; };
 		3792B14423AF43020088EE3B /* CityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRow.swift; sourceTree = "<group>"; };
 		4936188523BB41C100A68280 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		4936189D23BB4D8500A68280 /* music.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.mp4; path = ../../ExchangeGift/ExchangeGift/music.mp4; sourceTree = "<group>"; };
 		493618A223BB51E500A68280 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Song.swift; path = "../../../Downloads/MusicApp-2 2/Song.swift"; sourceTree = "<group>"; };
 		493618A423BB51ED00A68280 /* MusicList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicList.swift; path = "../../../Downloads/MusicApp-2 2/MusicApp/MusicList.swift"; sourceTree = "<group>"; };
 		493618A523BB51ED00A68280 /* SongDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SongDetail.swift; path = "../../../Downloads/MusicApp-2 2/MusicApp/SongDetail.swift"; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 		495B70E723A5FB250068C644 /* 00657008-FinalProject */ = {
 			isa = PBXGroup;
 			children = (
-				4936189D23BB4D8500A68280 /* music.mp4 */,
 				495B70E823A5FB250068C644 /* AppDelegate.swift */,
 				495B70EA23A5FB250068C644 /* SceneDelegate.swift */,
 				495B70EE23A5FB260068C644 /* Assets.xcassets */,

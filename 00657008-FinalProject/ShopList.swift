@@ -25,13 +25,16 @@ struct ShopList: View {
     var urlStr: String  
     var districts: [String]
    
-    func fetchShops() {
+    func fetchShops(_currentShops: [Shop]) {
         if let url = URL(string: urlStr) {
             URLSession.shared.dataTask(with: url) { (data, response , error) in
                 let decoder = JSONDecoder()
                 if let data = data, let shop = try? decoder.decode([Shop].self, from: data) {
                     self.shops = shop
-                    self.currentShops = self.shops
+                    print(_currentShops.count)
+                    if _currentShops.count == 0{
+                        self.currentShops = self.shops
+                    }
                 }
             }.resume()
         }
@@ -74,7 +77,6 @@ struct ShopList: View {
     }
     
     var body: some View {
-        
         NavigationView{
             VStack {
                 List(self.currentShops.indices, id: \.self) { (index)  in
@@ -85,7 +87,7 @@ struct ShopList: View {
                  }
                  .frame(height:700)
                  .onAppear {
-                     self.fetchShops()
+                    self.fetchShops(_currentShops: self.currentShops)
                      UITableView.appearance().separatorColor = .clear
                  }
                 Spacer()
