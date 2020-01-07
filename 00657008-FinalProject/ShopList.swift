@@ -109,7 +109,7 @@ struct ShopList: View {
                 }
             )
         }
-        .partialSheet(presented: $showChooseDistrict) {
+        /*.partialSheet(presented: $showChooseDistrict) {
             VStack {
                 Group {
                    Button(action: {
@@ -131,7 +131,7 @@ struct ShopList: View {
                 }
                 .frame(height: 60)
             }
-        }
+        }*/
     }
 }
 

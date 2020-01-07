@@ -52,7 +52,7 @@ struct ShopDetail: View {
             VStack(alignment: .leading){
                 HeightButton(shop: self.shop,annotations: self.$annotations,mapHeight: self.$mapHeight.animation(),smallMap: self.$smallMap)
                 MapView(coordinate: CLLocationCoordinate2D(latitude: (self.shop.latitude as NSString).doubleValue , longitude: (self.shop.longitude as NSString).doubleValue ),annotations: self.annotations).frame(height: self.mapHeight)
-                if(self.smallMap) {
+                /*if(self.smallMap) {
                     Group {
                         HStack{
                             Text("店名:").font(Font.system(size: 30))
@@ -112,7 +112,7 @@ struct ShopDetail: View {
                             Text(self.shop.limited_time!).padding(.trailing,0).font(Font.system(size: 30))
                         }.padding(.bottom,5)
                     }
-                }
+                }*/
                 
             }            
         }.navigationBarTitle(self.shop.name)

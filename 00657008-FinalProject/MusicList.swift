@@ -18,6 +18,7 @@ struct MusicList: View {
     
     func fetchSongs(_singer: String ) {
           print(_singer)
+          self.songs.removeAll()
           let urlStr = "https://itunes.apple.com/search?term=\(_singer)"
           if let url = URL(string: urlStr) {
               URLSession.shared.dataTask(with: url) { (data, response , error) in
@@ -42,35 +43,35 @@ struct MusicList: View {
                 }
             }
             .navigationBarTitle("歌曲列表")
-            .navigationBarItems(leading:
-                HStack{
-                    EditButton()
-                        .padding(5)
-                }
-                ,trailing:
+            .navigationBarItems(trailing:
                 HStack{
                     Button(action: {
                         if self.currentSinger == "" {
                             self.showAlert = true
+                            self.showSingerAlert = true
+                            self.showInputAlert = false
                         }
-                        self.fetchSongs(_singer: self.currentSinger)
-                        if self.songs.count == 0 && self.currentSinger != ""{
+                        else {
+                            self.showSingerAlert = false
+                            self.fetchSongs(_singer: self.currentSinger)
                             sleep(1)
                             if self.songs.count == 0{
                                 self.showAlert = true
                                 self.showInputAlert = true
                             }
                         }
+                        //彼得潘
                         print(self.showSingerAlert)
+                        print(self.showInputAlert)
                     }) {
                         Text("新增")
                     }
                     .alert(isPresented: self.$showAlert) { () -> Alert in
-                        if self.showInputAlert == true {
-                            return Alert(title:Text("找不到此歌手的音樂"),message: Text("請重新輸入"))
-                        }
-                        else if self.showSingerAlert == true {
+                        if self.showSingerAlert == true {
                             return Alert(title: Text("請先輸入歌手名稱"))
+                        }
+                        else if self.showInputAlert == true {
+                            return Alert(title:Text("找不到此歌手的音樂"),message: Text("請重新輸入"))
                         }
                         else{
                             return Alert(title: Text("找不到此歌手的音樂"),message: Text("請重新輸入"))
