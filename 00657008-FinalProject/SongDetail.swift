@@ -12,27 +12,33 @@ import AVKit
 struct SongDetail: View {
     var song: Song
     @State private var player: AVPlayer?
-    
     var body: some View {
-        
-        VStack {
-            Text(song.trackName)
-            Button(action: {
-                self.player = AVPlayer(url: self.song.previewUrl)
-                self.player?.play()
-                
-            }) {
-                Image(systemName: "play.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
+        GeometryReader { (geometry) in
+            VStack {
+                NetworkImage(url: self.song.artworkUrl100)
+                    .scaledToFill()
+                    .frame(width: 300, height: 300)
+                Text(self.song.trackName)
+                    .font(Font.system(size: 30))
+                Text(self.song.artistName)
+                Button(action: {
+                    self.player = AVPlayer(url: self.song.previewUrl)
+                    self.player?.play()
+                }) {
+                    Image(systemName: "play.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                }
             }
+            .onDisappear {
+                self.player?.pause()
+            }
+            .frame(width: geometry.size.width, height: 900)
+            .background(Color.init(red: 182/255, green: 171/255, blue: 171/255))
         }
-        .onDisappear {
-            self.player?.pause()
-        }
+        
     }
-    
 }
 
 struct SongDetail_Previews: PreviewProvider {
