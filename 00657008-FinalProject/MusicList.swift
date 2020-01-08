@@ -34,70 +34,72 @@ struct MusicList: View {
         
     var body: some View {
         //彼得潘
-        NavigationView {
-            
-            List(songs.indices, id: \.self) { (index)  in
-                NavigationLink(destination: SongDetail(song: self.songs[index])) {
-                    SongRow(song: self.songs[index])
+        GeometryReader { (geometry) in
+            NavigationView {
+                
+                List(self.songs.indices, id: \.self) { (index)  in
+                    NavigationLink(destination: SongDetail(song: self.songs[index])) {
+                        SongRow(song: self.songs[index])
 
+                    }
                 }
-            }
-            .navigationBarTitle("歌曲列表")
-            .navigationBarItems(trailing:
-                HStack{
-                    Button(action: {
-                        if self.currentSinger == "" {
-                            self.showAlert = true
-                            self.showSingerAlert = true
-                            self.showInputAlert = false
-                        }
-                        else {
-                            self.showSingerAlert = false
-                            self.fetchSongs(_singer: self.currentSinger)
-                            sleep(1)
-                            if self.songs.count == 0{
+                .navigationBarTitle("歌曲列表")
+                .navigationBarItems(trailing:
+                    HStack{
+                        Button(action: {
+                            if self.currentSinger == "" {
                                 self.showAlert = true
-                                self.showInputAlert = true
+                                self.showSingerAlert = true
+                                self.showInputAlert = false
                             }
+                            else {
+                                self.showSingerAlert = false
+                                self.fetchSongs(_singer: self.currentSinger)
+                                sleep(1)
+                                if self.songs.count == 0{
+                                    self.showAlert = true
+                                    self.showInputAlert = true
+                                }
+                            }
+                            //彼得潘
+                            print(self.showSingerAlert)
+                            print(self.showInputAlert)
+                        }) {
+                            Text("新增")
                         }
-                        //彼得潘
-                        print(self.showSingerAlert)
-                        print(self.showInputAlert)
-                    }) {
-                        Text("新增")
-                    }
-                    .alert(isPresented: self.$showAlert) { () -> Alert in
-                        if self.showSingerAlert == true {
-                            return Alert(title: Text("請先輸入歌手名稱"))
+                        .alert(isPresented: self.$showAlert) { () -> Alert in
+                            if self.showSingerAlert == true {
+                                return Alert(title: Text("請先輸入歌手名稱"))
+                            }
+                            else if self.showInputAlert == true {
+                                return Alert(title:Text("找不到此歌手的音樂"),message: Text("請重新輸入"))
+                            }
+                            else{
+                                return Alert(title: Text("找不到此歌手的音樂"),message: Text("請重新輸入"))
+                            }
+                         
                         }
-                        else if self.showInputAlert == true {
-                            return Alert(title:Text("找不到此歌手的音樂"),message: Text("請重新輸入"))
-                        }
-                        else{
-                            return Alert(title: Text("找不到此歌手的音樂"),message: Text("請重新輸入"))
-                        }
-                     
-                    }
-                    /*.alert(isPresented: self.$showSingerAlert) { () -> Alert in
-                        return Alert(title: Text("找不到此歌手的音樂喔 請重新輸入")
-                        )
-                    }*/
-                    
-                    Button(action: {
-                        let alertHC = UIHostingController(rootView: MyAlert(currentSinger: self.$currentSinger).frame(width: 350, height: 200))
-
-                        alertHC.preferredContentSize = CGSize(width: 100, height: 100)
-                        alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-                        UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+                        /*.alert(isPresented: self.$showSingerAlert) { () -> Alert in
+                            return Alert(title: Text("找不到此歌手的音樂喔 請重新輸入")
+                            )
+                        }*/
                         
-                    }) {
-                        Image(systemName: "plus.circle.fill")
+                        Button(action: {
+                            let alertHC = UIHostingController(rootView: MyAlert(currentSinger: self.$currentSinger).frame(width: 350, height: 200))
+
+                            alertHC.preferredContentSize = CGSize(width: 100, height: 100)
+                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+                            
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                        }
                     }
+                )
+                .onAppear {
+                    self.fetchSongs(_singer: self.currentSinger)
                 }
-            )
-            .onAppear {
-                self.fetchSongs(_singer: self.currentSinger)
-            }
+            }.frame(height: geometry.size.height * 400 / 414)
         }
     }
 }
@@ -108,9 +110,9 @@ struct MyAlert: View {
     var body: some View {
 
         VStack {
-            Text("想聽誰的歌？").font(.headline).padding()
+            Text("想聽誰的歌？").font(.headline).padding().foregroundColor(Color.red)
 
-            TextField("ex:彼得潘",text: $currentSinger).padding()
+            TextField("ex:彼得潘",text: $currentSinger).padding().foregroundColor(Color.purple)
             Divider()
             HStack {
                 Spacer()

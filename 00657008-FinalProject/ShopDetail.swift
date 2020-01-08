@@ -18,13 +18,13 @@ struct HeightButton: View {
         HStack {
             if (smallMap == false){
                 Button("縮小地圖") {
-                    self.mapHeight = 200
+                    self.mapHeight = 130
                     self.smallMap = true
                 }
             }
             else {
                 Button("放大地圖") {
-                    self.mapHeight = 600
+                    self.mapHeight = 380
                     self.smallMap = false
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: (self.shop.latitude as NSString).doubleValue , longitude: (self.shop.longitude as NSString).doubleValue)
@@ -32,11 +32,6 @@ struct HeightButton: View {
                     self.annotations.append(annotation)
                 }
             }
-            /*Spacer()
-            Button("新增標籤") {
-                
-            }*/
-            
         }
         
     }
@@ -45,79 +40,76 @@ struct HeightButton: View {
 struct ShopDetail: View {
     var shop: Shop
     @State private var annotations = [MKPointAnnotation]()
-    @State private var mapHeight: CGFloat = 200
+    @State private var mapHeight: CGFloat = 130
     @State private var smallMap: Bool = true
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading){
-                HeightButton(shop: self.shop,annotations: self.$annotations,mapHeight: self.$mapHeight.animation(),smallMap: self.$smallMap)
-                MapView(coordinate: CLLocationCoordinate2D(latitude: (self.shop.latitude as NSString).doubleValue , longitude: (self.shop.longitude as NSString).doubleValue ),annotations: self.annotations).frame(height: self.mapHeight)
-                /*if(self.smallMap) {
+                HeightButton(shop: self.shop,annotations: self.$annotations,mapHeight: self.$mapHeight.animation(),smallMap: self.$smallMap).position(x: geometry.size.width * 360 / 414)
+                MapView(coordinate: CLLocationCoordinate2D(latitude: (self.shop.latitude as NSString).doubleValue , longitude: (self.shop.longitude as NSString).doubleValue ),annotations: self.annotations).frame(height: geometry.size.height * self.mapHeight / 414)
+                if(self.smallMap) {
                     Group {
                         HStack{
-                            Text("店名:").font(Font.system(size: 30))
+                            Text("店名:").font(Font.system(size: 25))
                             Spacer()
-                            Text(self.shop.name).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(self.shop.name).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("地址:").font(Font.system(size: 30))
+                            Text("地址:").font(Font.system(size: 25))
                             Spacer()
-                            Text(self.shop.address).padding(.trailing,0).font(Font.system(size: 20))
-                        }.padding(.bottom,5)
+                            Text(self.shop.address).padding(.trailing,0).font(Font.system(size: 15))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("營業時間:").font(Font.system(size: 30))
+                            Text("營業時間:").font(Font.system(size: 25))
                             Spacer()
-                            Text(self.shop.open_time!).padding(.trailing,0).font(Font.system(size: 20))
-                        }.padding(.bottom,5)
+                            Text(self.shop.open_time!).padding(.trailing,0).font(Font.system(size: 15))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("Wifi:").font(Font.system(size: 30))
+                            Text("Wifi:").font(Font.system(size: 25))
                             Spacer()
-                            Text(String(self.shop.wifi)).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(String(self.shop.wifi)).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("座位:").font(Font.system(size: 30))
+                            Text("座位:").font(Font.system(size: 25))
                             Spacer()
-                            Text(String(self.shop.seat)).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(String(self.shop.seat)).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("安靜:").font(Font.system(size: 30))
+                            Text("安靜:").font(Font.system(size: 25))
                             Spacer()
-                            Text(String(self.shop.quiet)).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(String(self.shop.quiet)).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("美味:").font(Font.system(size: 30))
+                            Text("美味:").font(Font.system(size: 25))
                             Spacer()
-                            Text(String(self.shop.tasty)).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(String(self.shop.tasty)).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                         HStack{
-                             Text("價錢:").font(Font.system(size: 30))
+                             Text("價錢:").font(Font.system(size: 25))
                              Spacer()
-                             Text(String(self.shop.cheap)).padding(.trailing,0).font(Font.system(size: 30))
-                         }.padding(.bottom,5)
+                             Text(String(self.shop.cheap)).padding(.trailing,0).font(Font.system(size: 25))
+                         }.padding(.bottom,2)
                     }
                     Group {
                         HStack{
-                            Text("插座:").font(Font.system(size: 30))
+                            Text("插座:").font(Font.system(size: 25))
                             Spacer()
-                            Text(self.shop.socket!).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(self.shop.socket!).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("站立式座位:").font(Font.system(size: 30))
+                            Text("站立式座位:").font(Font.system(size: 25))
                             Spacer()
-                            Text(self.shop.standing_desk!).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(self.shop.standing_desk!).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                         HStack{
-                            Text("時間限制:").font(Font.system(size: 30))
+                            Text("時間限制:").font(Font.system(size: 25))
                             Spacer()
-                            Text(self.shop.limited_time!).padding(.trailing,0).font(Font.system(size: 30))
-                        }.padding(.bottom,5)
+                            Text(self.shop.limited_time!).padding(.trailing,0).font(Font.system(size: 25))
+                        }.padding(.bottom,2)
                     }
-                }*/
-                
-            }            
+                }
+            }.frame(height: geometry.size.height * 400 / 414).offset(y: geometry.size.height * -5 / 414)
         }.navigationBarTitle(self.shop.name)
-        
-        
     }
 }
 

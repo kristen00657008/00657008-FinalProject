@@ -17,7 +17,7 @@ struct SongDetail: View {
             VStack {
                 NetworkImage(url: self.song.artworkUrl100)
                     .scaledToFill()
-                    .frame(width: 300, height: 300)
+                    .frame(width: geometry.size.width * 250 / 414, height: geometry.size.height * 250 / 414)
                 Text(self.song.trackName)
                     .font(Font.system(size: 30))
                 Text(self.song.artistName)
@@ -28,13 +28,13 @@ struct SongDetail: View {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .frame(width: geometry.size.width * 100 / 414, height: geometry.size.height * 100 / 414)
                 }
             }
             .onDisappear {
                 self.player?.pause()
             }
-            .frame(width: geometry.size.width, height: 900)
+            .frame(width: geometry.size.width, height: geometry.size.height * 500 / 414 )
             .background(Color.init(red: 182/255, green: 171/255, blue: 171/255))
         }
         

@@ -24,7 +24,7 @@ struct ShopList: View {
     @State private var showChoosePrice = false
     var urlStr: String  
     var districts: [String]
-   
+    
     func fetchShops(_currentShops: [Shop]) {
         if let url = URL(string: urlStr) {
             URLSession.shared.dataTask(with: url) { (data, response , error) in
@@ -77,61 +77,64 @@ struct ShopList: View {
     }
     
     var body: some View {
-        NavigationView{
-            VStack {
-                List(self.currentShops.indices, id: \.self) { (index)  in
-                    NavigationLink(destination: ShopDetail(shop: self.currentShops[index])) {
-                        ShopRow(shop: self.currentShops[index])
-                            .frame(height:35)
-                    }
-                 }
-                 .frame(height:700)
-                 .onAppear {
-                    self.fetchShops(_currentShops: self.currentShops)
-                     UITableView.appearance().separatorColor = .clear
-                 }
-                Spacer()
-            }
-            .navigationBarItems(leading:
-                HStack{
-                    Button(action: {
-                        self.showChooseDistrict = true
-                    }){Text(currentDistrict).bold().font(Font.system(size: 20))}
-                },trailing:
-                VStack{
-                    Button(action: {
-                       self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .resizable()
-                            .frame(width:22,height:22)
-                    }
-                }
-            )
-        }
-        /*.partialSheet(presented: $showChooseDistrict) {
-            VStack {
-                Group {
-                   Button(action: {
-                        self.showChooseDistrict = false
-                        self.currentDistrict = self.tempDistrict
-                        self.judgeDistrict()
-                   }, label: {
-                       Text("完成")
-                   }).offset(x: 150, y: -10)
-                    
-                    Text("請選擇區域")
-                        .offset(x:0,y:-20)
-                    Picker(selection: self.$tempDistrict, label: Text("")) {
-                        ForEach(0..<self.districts.count) { (index) in
-                            Text(self.districts[index]).tag(self.districts[index])
+        GeometryReader{ (geometry) in
+            NavigationView{
+                VStack {
+                    List(self.currentShops.indices, id: \.self) { (index)  in
+                        NavigationLink(destination: ShopDetail(shop: self.currentShops[index])) {
+                            ShopRow(shop: self.currentShops[index])
+                                .frame(height:geometry.size.height * 35 / 414)
                         }
                     }
-                    .offset(x:-50,y:0)
+                    .frame(height:geometry.size.height * 400 / 414)
+                    .onAppear {
+                        self.fetchShops(_currentShops: self.currentShops)
+                        UITableView.appearance().separatorColor = .clear
+                    }
+                    Spacer()
                 }
-                .frame(height: 60)
+                .navigationBarItems(leading:
+                    HStack{
+                        Button(action: {
+                            self.showChooseDistrict = true
+                        }){Text(self.currentDistrict).bold().font(Font.system(size: 20))}
+                    },trailing:
+                    VStack{
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width:geometry.size.width * 22 / 414,height: geometry.size.height * 12 / 414)
+                        }
+                    }
+                )
             }
-        }*/
+            .partialSheet(presented: self.$showChooseDistrict) {
+                VStack {
+                    Group {
+                        Button(action: {
+                            self.showChooseDistrict = false
+                            self.currentDistrict = self.tempDistrict
+                            self.judgeDistrict()
+                        }, label: {
+                            Text("完成")
+                        }).offset(x: geometry.size.width * 150 / 414, y: geometry.size.height * 10 / 414)
+                        
+                        Text("請選擇區域")
+                            .offset(x:geometry.size.width * 0 / 414,y:geometry.size.height * -20 / 414)
+                        Picker(selection: self.$tempDistrict, label: Text("")) {
+                            ForEach(0..<self.districts.count) { (index) in
+                                Text(self.districts[index]).tag(self.districts[index]).foregroundColor(Color.blue)
+                            }
+                        }
+                        .offset(x: geometry.size.width * -50 / 414, y: geometry.size.height * -30 / 414)
+                    }
+                    .frame(height: geometry.size.height * 40 / 414)
+                }
+            }
+            
+        }
     }
 }
 

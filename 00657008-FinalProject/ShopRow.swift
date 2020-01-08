@@ -12,15 +12,18 @@ struct ShopRow: View {
     var shop: Shop
     
     var body: some View {
-        VStack(alignment: .center) {
-            Text(shop.name)
-                .bold()
-            Text(shop.address)
+        GeometryReader { (geometry) in
+            VStack(alignment: .center) {
+                Text(self.shop.name)
+                    .bold()
+                Text(self.shop.address)
+            }
+            .frame(width: geometry.size.width * 330 / 414)
+            .background(Color.yellow)
+            .cornerRadius(10)
+            .shadow(radius: 5)
         }
-        .frame(width: 330)
-        .background(Color.yellow)
-        .cornerRadius(10)
-        .shadow(radius: 5)
+        
     }
 }
 
